@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load bootstrap3 %}
+
+{% block title %}ログイン{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="alert alert-info" role="alert">ユーザー {{ user.username }} としてすでにログインしています。</div>
+{% else %}
+
+{% if next %}
+<div class="alert alert-danger" role="alert">ページの閲覧にはログインが必要です。</div>
+{% endif %}
+<form method="post" action="{{prefix}}{% url 'django.contrib.auth.views.login' %}">
+  {% csrf_token %}
+  {% bootstrap_form form layout='inline' %}
+  {% buttons submit='ログイン' reset='クリア' %}{% endbuttons %}
+  <input type="hidden" name="next" value="{{ next }}" />
+</form>
+{% endif %}
+
+{% endblock %}

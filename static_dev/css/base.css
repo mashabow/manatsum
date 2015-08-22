@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.pagination-wrap {
+    margin: 20px 0;
+}
+
+.pagination-wrap>* {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.pagination {
+    margin: 0 1em 0 0 !important;
+}
+
+
+ul.glyphs {
+    padding-left: 0;
+}
+
+ul.glyphs>li {
+    display: inline-block;
+}
+
+pre.json {
+    font-size: 80%;
+}

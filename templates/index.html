@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}トップページ{% endblock %}
+
+{% block content %}
+
+<h1 class="page-header">manatsum トップページ</h1>
+
+{% if user.is_authenticated %}
+<p style="margin-bottom: 3em;">
+  <a href="{{prefix}}{% url 'app.views.manatsum' %}"
+     class="btn btn-primary btn-lg">収録を始める</a>
+</p>
+<p>
+  <a href="{{prefix}}{% url 'app.views.user_list' %}"
+     class="btn btn-default">ユーザーの一覧</a>
+  <a href="{{prefix}}{% url 'app.views.character_list' %}"
+     class="btn btn-default">文字の一覧</a>
+  <a href="{{prefix}}{% url 'app.views.glyph_list' %}"
+     class="btn btn-default">グリフの一覧</a>
+</p>
+{% else %}
+<p>
+  <a href="{{prefix}}{% url 'django.contrib.auth.views.login' %}"
+     class="btn btn-primary">ログイン画面へ</a>
+</p>
+{% endif %}
+
+<footer style="position: absolute; bottom: 0.5em;">
+  <p><small>収録画面の例示グリフには <a href="http://kanjivg.tagaini.net/">KanjiVG</a> のデータを利用しています。KanjiVG is copyright © 2009–2013 Ulrich Apel and released under the <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0</a> license.</small></p>
+</footer>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+  {% load bootstrap3 %}
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, user-scalable=no">
+    <title>手書き漢字字形収録 - manatsum</title>
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{{STATIC_URL}}css/manatsum.css">
+  </head>
+
+  <body>
+    <main class="manatsum-container">
+
+      <div id="svgs">
+        <svg id="sample"></svg>
+        <svg id="canvas"></svg>
+      </div>
+
+      <div id="controls">
+        <div id="buttons">
+          <button id="post" class="btn btn-primary">送信</button>
+          <button id="clear" class="btn btn-default">消去</button>
+        </div>
+        <div id="status">
+          <div>
+            <div class="form-inline">
+              <input type="text" id="current_character" class="form-control input-lg"/>
+              ：
+              <input type="number" id="current_num" class="form-control input-lg"/>
+              /<span id="total_num"></span>
+            </div>
+            <div id="gpm">
+              0 文字/分
+            </div>
+          </div>
+          <div>
+            <div class="progress">
+              <div class="progress-bar progress-bar-info" style="width: 0%;"></div>
+              <div id="percentage">0.0 %</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <script src="//cdn.jsdelivr.net/snap.svg/0.3.0/snap.svg-min.js"></script>
+    <script src="//cdn.jsdelivr.net/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="{{STATIC_URL}}js/manatsum.js"></script>
+    {% bootstrap_javascript %}
+  </body>
+</html>

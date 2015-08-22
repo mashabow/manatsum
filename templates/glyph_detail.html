@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}グリフ #{{ glyph.id }}（{{ glyph.character }}）の詳細{% endblock %}
+
+{% block content %}
+
+<h1 class="page-header">グリフ #{{ glyph.id }} の詳細</h1>
+
+<div class="row">
+
+  <div class="col-sm-5">
+    <h2>形状</h2>
+    {{ glyph.to_svg|safe }}
+    {{ glyph.thumbnail|safe }}
+  </div>
+
+  <div class="col-sm-7">
+    <h2>メタデータ</h2>
+    <table class="table table-condensed">
+      <tr>
+        <th>項目</th>
+        <th>値</th>
+      </tr>
+      <tr>
+        <td>ID</td>
+        <td>{{ glyph.id }}</td>
+      </tr>
+      <tr>
+        <td>文字</td>
+        <td><a href="{{prefix}}{% url 'app.views.character_detail' glyph.code_url %}">{{glyph.code_text}}（{{glyph.character}}）</a></td>
+      </tr>
+      <tr>
+        <td>ユーザー</td>
+        <td><a href="{{prefix}}{% url 'app.views.user_detail' glyph.user.id %}">{{ glyph.user }}</a></td>
+      </tr>
+      <tr>
+        <td>登録日時</td>
+        <td>{{ glyph.create_date }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<h2>ストローク詳細</h2>
+<pre class="json">{{ glyph.strokes_pretty_json }}</pre>
+
+{% endblock %}

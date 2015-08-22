@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}ユーザーの一覧{% endblock %}
+
+{% block content %}
+
+<h1 class="page-header">ユーザーの一覧</h1>
+
+{% if user_list %}
+    <ul class="list-group">
+    {% for user in user_list %}
+      <li class="list-group-item"><a href="{{prefix}}{% url 'app.views.user_detail' user.id %}">{{ user.username }}</a> <span class="badge">{{ user.glyph_set.all | length }}</span></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No users.</p>
+{% endif %}
+
+{% endblock %}

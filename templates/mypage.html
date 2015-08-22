@@ -1,0 +1,18 @@
+{% extends 'user_detail.html' %}
+
+{% block title %}マイページ{% endblock %}
+
+{% block mypage %}
+
+<h1 class="page-header">マイページ
+  <small>― <a href="{{prefix}}{% url 'app.views.user_detail' user.id %}"
+               style="color: inherit;">{{ user.username }}</a></small>
+</h1>
+
+<p>
+  <a href="{{prefix}}{% url 'app.views.manatsum' %}" class="btn btn-primary">収録を始める</a>
+  <a href="{{prefix}}{% url 'app.views.dump_user_glyphset' user.id %}"
+     class="btn btn-default">グリフデータをダウンロード</a>
+</p>
+
+{% endblock %}

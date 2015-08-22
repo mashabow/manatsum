@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}文字の一覧{% endblock %}
+
+{% block content %}
+
+<h1 class="page-header">文字の一覧<small> ― {{ character_list|length }}文字</small></h1>
+
+{% if character_list %}
+    <p style="font-size: 2rem;">
+    {% for c, code_url in character_list %}
+        <a href="{{prefix}}{% url 'app.views.character_detail' code_url %}">{{c}}</a>
+    {% endfor %}
+    </p>
+{% else %}
+    <p>No characters.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'glyph_list.html' %}
+
+{% block title %}ユーザー {{ target_user.username }} の詳細{% endblock %}
+
+{% block user_detail %}
+
+{% block mypage %}
+
+<h1 class="page-header">ユーザー {{ target_user.username }} の詳細</h1>
+<p>
+  <a href="{{prefix}}{% url 'app.views.dump_user_glyphset' target_user.id %}"
+     class="btn btn-default">グリフデータをダウンロード</a>
+</p>
+
+{% endblock %}
+
+{% endblock %}

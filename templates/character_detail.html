@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}文字 U+{{code}}（{{character}}）の詳細{% endblock %}
+
+{% block content %}
+
+{% block mypage %}
+<h1 class="page-header">文字 U+{{code}}（{{character}}）の詳細</h1>
+{% endblock %}
+
+<p>全{{ glyph_list|length }}件</p>
+{% if glyph_list %}
+<ul class="glyphs">
+  {% for glyph in glyph_list %}
+  <li>
+    <a href="{{prefix}}{% url 'app.views.glyph_detail' glyph.id %}"
+       title="#{{glyph.id}} {{glyph.character}}">
+      {{ glyph.thumbnail|safe }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No glyphs.</p>
+{% endif %}
+
+{% endblock %}

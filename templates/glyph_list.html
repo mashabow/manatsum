@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}グリフの一覧{% endblock %}
+
+{% block content %}
+
+{% block user_detail %}
+<h1 class="page-header">グリフの一覧</h1>
+{% endblock %}
+
+<div class="pagination-wrap" style="margin-top: 3em;">
+  <ul class="pagination">
+
+    {% if glyphs.has_previous %}
+    <li><a href="?page=1">«</a></li>
+    <li><a href="?page={{ glyphs.previous_page_number }}">‹</a></li>
+    {% else %}
+    <li class="disabled"><a>«</a></li>
+    <li class="disabled"><a>‹</a></li>
+    {% endif %}
+
+    {% for n in page_nums %}
+    <li {% if n == glyphs.number %}class="active"{% endif %}>
+      <a href="?page={{n}}"><span>{{n}}</span></a>
+    </li>
+    {% endfor %}
+
+    {% if glyphs.has_next %}
+    <li><a href="?page={{ glyphs.next_page_number }}">›</a></li>
+    <li><a href="?page={{ glyphs.paginator.num_pages }}">»</a></li>
+    {% else %}
+    <li class="disabled"><a>›</a></li>
+    <li class="disabled"><a>»</a></li>
+    {% endif %}
+
+  </ul>
+  <span>{{glyphs.start_index}}–{{glyphs.end_index}}件目 / 全{{glyphs.paginator.count}}件</span>
+</div>
+
+{% if glyphs %}
+<ul class="glyphs">
+  {% for glyph in glyphs %}
+  <li>
+    <a href="{{prefix}}{% url 'app.views.glyph_detail' glyph.id %}"
+       title="#{{glyph.id}} {{glyph.character}}">
+      {{ glyph.thumbnail|safe }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No glyphs.</p>
+{% endif %}
+
+{% endblock %}
